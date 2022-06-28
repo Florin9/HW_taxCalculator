@@ -41,7 +41,7 @@ namespace TaxCalculator.Data.Implementation.DataSeeder
         private static void SeedData<T>(SeedDataOptions seedDataOptions, DbContext dbContext) where T : class
         {
             var str = File.ReadAllText(Path.Combine(Environment.CurrentDirectory, seedDataOptions.BasePath,
-                seedDataOptions.DataFolder, nameof(T)) + seedDataOptions.FileExtension);
+                seedDataOptions.DataFolder, typeof(T).Name) + seedDataOptions.FileExtension);
             if (!string.IsNullOrWhiteSpace(str))
             {
                 dbContext.Set<T>().RemoveRange(dbContext.Set<T>());
